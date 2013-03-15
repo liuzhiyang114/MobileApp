@@ -1,7 +1,4 @@
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" 
-    android:layout_width="fill_parent" android:layout_height="wrap_content"
-    >
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,6 +15,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/orange" >
+        
+       
 
         <Button
            
@@ -37,56 +36,20 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="取消预定"
+            android:text="预定信息"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="#000000"
             android:textSize="25sp" />
     </RelativeLayout>
 
-        <LinearLayout 
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+ <ListView            
+        android:id="@android:id/list"          
+        android:layout_width="fill_parent"           
+        android:layout_height="wrap_content"/> 
+       
         
-        <Button android:id="@+id/btndelete"
-            android:text="取消"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dip"
-            android:paddingRight="20dip"
-        android:layout_gravity="right" />
-        <LinearLayout 
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
-            <TextView android:id="@+id/parkna"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:textColor="#000000"
-            android:textSize="16sp" />
-            <LinearLayout 
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
-    <TextView android:id="@+id/chewei"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:textColor="#000000" 
-            android:textSize="16sp"/>
-   <TextView android:id="@+id/booktim"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:textColor="#000000"
-            android:textSize="16sp" /></LinearLayout>
-   
-        </LinearLayout>
-   
-    
-
-    
-    </LinearLayout>
-        
+               
+     
  
 
 </LinearLayout>
-</ScrollView>

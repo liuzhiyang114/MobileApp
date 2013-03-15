@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <LinearLayout 
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+        
+            
+            
+            <Button android:id="@+id/btndelete"
+            android:text="取消"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dip"
+            android:paddingRight="20dip"
+        android:layout_gravity="right" />
+        <LinearLayout 
+		    android:orientation="vertical"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content">
+            <TextView android:id="@+id/parkna"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+			            <RelativeLayout 
+					    android:layout_width="fill_parent"
+					    android:layout_height="wrap_content">
+			    		<TextView android:id="@+id/chewei"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:textColor="#000000" 
+			            android:textSize="16sp"/>
+			   			<TextView android:id="@+id/booktim"
+			       		android:layout_toRightOf="@id/chewei"
+			            android:layout_width="wrap_content"
+			            android:layout_marginLeft="15dp"
+			            android:layout_height="wrap_content"
+			            android:textColor="#000000"
+			            android:textSize="16sp" /></RelativeLayout>
+   
+        			</LinearLayout>
+            
+
+   
+    
+
+    
+    			</LinearLayout>
