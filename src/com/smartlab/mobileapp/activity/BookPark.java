@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -59,25 +60,29 @@ public class BookPark extends MapActivity implements OnClickListener{
 		return false;
 	}
 private void Bookpark(){
-		
-		AlertDialog alertDialog = new AlertDialog.Builder(this)
-    	.setTitle("预定车位")
-    	.setMessage("是否预定车位？")
-    	.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-    	public void onClick(DialogInterface dialog, int which){
-    		Toast.makeText(getApplicationContext(), "您已成功预定"+parkname,
-   			     Toast.LENGTH_SHORT).show();
-    		//回传
-   		flagbook=false;
-    	BookPark.this.setResult(RESULT_OK, intent);
-    	BookPark.this.finish();
-    	}
-    	}).setNegativeButton("取消",
-    	new DialogInterface.OnClickListener() {
-    	public void onClick(DialogInterface dialog, int which){
-    	return;
-    	}}).create(); //创建对话框
-    	alertDialog.show(); // 显示对话框		
+			
+	LayoutInflater layoutInflater = LayoutInflater.from(this);
+	View viewaffirm = layoutInflater.inflate(R.layout.affirmid, null);
+	 
+	new AlertDialog.Builder(this).setTitle("请输入卡号密码").setView(
+			viewaffirm ).setPositiveButton("确定",
+	       new DialogInterface.OnClickListener() {
+	           @Override
+	           public void onClick(DialogInterface dialog, int which) {
+	        	   Toast.makeText(getApplicationContext(), "您已成功预定"+parkname,
+			   			     Toast.LENGTH_SHORT).show();
+	        	   //回传
+	          		flagbook=false;
+	            	BookPark.this.setResult(RESULT_OK, intent);
+	            	BookPark.this.finish();
+	           }
+	       }).setNegativeButton("取消",
+	       new DialogInterface.OnClickListener() {
+	           @Override
+	           public void onClick(DialogInterface dialog, int which) {
+	                return;
+	           }
+	       }).show();
 	}
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {

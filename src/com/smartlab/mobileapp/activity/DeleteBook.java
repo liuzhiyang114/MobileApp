@@ -51,8 +51,8 @@ public class DeleteBook extends ListActivity  implements OnClickListener{
 		        MyAdapter adapter = new MyAdapter(this);
 	        	setListAdapter(adapter);
 
-//	        	btnbac=(Button)findViewById(R.id.btnback);
-//	        	btnbac.setOnClickListener(this);
+	        	btnbac=(Button)findViewById(R.id.btnback);
+	        	btnbac.setOnClickListener(this);
 		
 		//Bundle
 				intent=this.getIntent();
