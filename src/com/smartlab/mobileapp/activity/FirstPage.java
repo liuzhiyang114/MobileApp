@@ -22,7 +22,7 @@ public class FirstPage extends MapActivity {
 			if(msg.what == TIME_UP)
 			{
 				Intent intent = new Intent();
-				intent.setClass(FirstPage.this, MainActivity.class);
+				intent.setClass(FirstPage.this,InputCard.class);
 				startActivity(intent);
 				overridePendingTransition(R.anim.splash_screen_fade, R.anim.splash_screen_hold);
 				FirstPage.this.finish();

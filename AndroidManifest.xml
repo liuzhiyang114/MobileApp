@@ -43,7 +43,7 @@
 		<activity android:name="com.smartlab.mobileapp.activity.Detail"></activity>
         <activity android:name="com.smartlab.mobileapp.activity.BookPark"></activity>
         <activity android:name="com.smartlab.mobileapp.activity.DeleteBook"></activity>
-        
+        <activity android:name="com.smartlab.mobileapp.activity.InputCard"></activity>
     </application>
 
 </manifest>
