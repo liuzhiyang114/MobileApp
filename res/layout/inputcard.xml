@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,51 +9,40 @@
 
     <!-- 返回 -->
 
-  
 
-
-
-        <TextView
-            android:id="@+id/input"
-            android:layout_marginTop="50dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="请输入卡号:"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="#000000"
-            android:textSize="25sp" />
-
-        <EditText
-            android:id="@+id/editidfirst"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/input"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="57dp"
-            android:ems="10"
-            android:textColor="#000000"
-            android:textSize="25sp" />
-
+	    
+	    <LinearLayout 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal"
+		    android:layout_marginTop="20dp"
+		    android:layout_gravity="center_horizontal">
          <Button
-             android:id="@+id/enterfirst"
+             android:id="@+id/openc"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:layout_alignLeft="@+id/editidfirst"
-             android:layout_below="@+id/editidfirst"
-             android:layout_marginLeft="36dp"
-             android:layout_marginTop="41dp"
-             android:background="@drawable/btnfirst"
+             android:text="开启相机" />
+
+         
+       
+         </LinearLayout>
+         <TextView 
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:text="您的卡号为："/>
+         
+         <TextView android:id="@+id/myresult"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:layout_marginTop="15dp"/>
+         <Button
+             android:id="@+id/takep"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="15dp"
+             android:layout_gravity="center_horizontal"
              android:text="确定" />
-
-         <Button
-             android:id="@+id/exitfirst"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignBaseline="@+id/enterfirst"
-             android:layout_alignBottom="@+id/enterfirst"
-             android:layout_alignRight="@+id/editidfirst"
-             android:layout_marginRight="32dp"
-             android:background="@drawable/btnfirst"
-             android:text="取消" />
-
-</RelativeLayout>
+         
+</LinearLayout>

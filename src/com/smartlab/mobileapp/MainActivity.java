@@ -82,6 +82,8 @@ public class MainActivity extends MapActivity {
 		spinner.setAdapter(aa);
 		spinner.setPrompt("请选择搜索范围");
 
+		Toast.makeText(getApplicationContext(), "您的卡号为"+cardNo,
+  			     Toast.LENGTH_SHORT).show();
 		btn1 = (Button) findViewById(R.id.button1);
 		btn2 = (Button) findViewById(R.id.button2);
 		checkGPS();
