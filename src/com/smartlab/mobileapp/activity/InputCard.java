@@ -38,7 +38,7 @@ public class InputCard extends Activity implements OnClickListener, Callback{
 
 	Button opencamera;
 	Button enter;
-	public String cardNO;
+	public static String cardNO;
 	TextView myresult;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +133,7 @@ public class InputCard extends Activity implements OnClickListener, Callback{
 			Bundle bundle = data.getExtras();
 			String scanResult = bundle.getString("result");
 			myresult.setText(scanResult);
+			cardNO=scanResult;
 		}
 	}
 }

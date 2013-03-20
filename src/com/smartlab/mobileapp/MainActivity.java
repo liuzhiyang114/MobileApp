@@ -39,6 +39,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.smartlab.mobileapp.activity.InputCard;
 
 public class MainActivity extends MapActivity {
 
@@ -65,7 +66,7 @@ public class MainActivity extends MapActivity {
 	MyHandle myhandle;
 	ConnectThread connectThread;
 
-	String cardNo = "123456";
+	//String MycardNo ;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -82,7 +83,7 @@ public class MainActivity extends MapActivity {
 		spinner.setAdapter(aa);
 		spinner.setPrompt("请选择搜索范围");
 
-		Toast.makeText(getApplicationContext(), "您的卡号为"+cardNo,
+		Toast.makeText(getApplicationContext(), "您的卡号为"+InputCard.cardNO,
   			     Toast.LENGTH_SHORT).show();
 		btn1 = (Button) findViewById(R.id.button1);
 		btn2 = (Button) findViewById(R.id.button2);
@@ -110,7 +111,7 @@ public class MainActivity extends MapActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				connectThread = new ConnectThread();
-				connectThread.setCardNo(cardNo);
+				connectThread.setCardNo(InputCard.cardNO);
 				connectThread.setMainActivity(MainActivity.this);
 				connectThread.setActivityHandler(myhandle);
 				connectThread.start();
