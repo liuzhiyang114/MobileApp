@@ -64,7 +64,7 @@ private void Bookpark(){
 	LayoutInflater layoutInflater = LayoutInflater.from(this);
 	View viewaffirm = layoutInflater.inflate(R.layout.affirmid, null);
 	 
-	new AlertDialog.Builder(this).setTitle("请输入卡号密码").setView(
+	new AlertDialog.Builder(this).setTitle("请输入密码").setView(
 			viewaffirm ).setPositiveButton("确定",
 	       new DialogInterface.OnClickListener() {
 	           @Override

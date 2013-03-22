@@ -39,8 +39,9 @@ public class DeleteBook extends ListActivity  implements OnClickListener{
 	Boolean flagbook;
 	String parkname;
 	Button btnbac;
-	  
-	  
+	List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+	int index ;
+	 //ViewHolder holder = null;
 	  private List<Map<String, Object>> mData;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,20 +57,20 @@ public class DeleteBook extends ListActivity  implements OnClickListener{
 		
 		//Bundle
 				intent=this.getIntent();
-				bundled=intent.getExtras();
-				flagbook=bundled.getBoolean("flag");
-				parkname=bundled.getString("parkname");
+				
+				if(intent.getExtras()!=null){
+					bundled=intent.getExtras();
+					flagbook=bundled.getBoolean("flag");
+					parkname=bundled.getString("parkname");
+					
+				}
+				
 //				Toast.makeText(getApplicationContext(), parkname,
 //		   			     Toast.LENGTH_SHORT).show();
-				
-
-				//addWegit();
-				
-				
 	}
 	
 	 private List<Map<String, Object>> getData() {
-	        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+	        //List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 	 
 	        Map<String, Object> map = new HashMap<String, Object>();
 	        map.put("parkna", "北京市万达停车场");
@@ -93,27 +94,16 @@ public class DeleteBook extends ListActivity  implements OnClickListener{
 	        return list;
 	    }
 	     
-	// ListView 中某项被选中后的逻辑
-	    @Override
-	    protected void onListItemClick(ListView l, View v, int position, long id) {
-	         
-	        Log.v("", (String)mData.get(position).get("parkna"));
-	    }
+//	// ListView 中某项被选中后的逻辑
+//	    @Override
+//	    protected void onListItemClick(ListView l, View v, int position, long id) {
+//	         
+//	        Log.v("", (String)mData.get(position).get("parkna"));
+//	    }
 	    /**
 	     * listview中点击按键弹出对话框
 	     */
-	    public void showInfo(){
-	        new AlertDialog.Builder(this)
-	        .setTitle("收费")
-	        .setMessage("收费是很贵滴~~")
-	        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-	            @Override
-	            public void onClick(DialogInterface dialog, int which) {
-	            }
-	        })
-	        .show();
-	         
-	    }
+	  
 	    public class MyAdapter extends BaseAdapter{
 			 
 	        private LayoutInflater mInflater;
@@ -149,7 +139,7 @@ public class DeleteBook extends ListActivity  implements OnClickListener{
 	             
 	            ViewHolder holder = null;
 	            if (convertView ==null) {
-	                 
+	            	index =position;
 	                holder=new ViewHolder();  
 	                convertView = mInflater.inflate(R.layout.listview, null);
 	                holder.btndelete = (Button)convertView.findViewById(R.id.btndelete);
@@ -171,7 +161,24 @@ public class DeleteBook extends ListActivity  implements OnClickListener{
 	                 
 	                @Override
 	                public void onClick(View v) {
-	                    showInfo();                 
+	                    //showInfo();   
+	                    
+	                	new AlertDialog.Builder(DeleteBook.this)
+                        .setTitle("删除")
+                        .setMessage("确定删除此预定？")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                        	 list.remove(index);
+                        	 notifyDataSetChanged();
+
+                            }        
+                                      })                                                        
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                          public void onClick(DialogInterface dialog, int which) {
+                        	  return;
+                            }        
+                        }).show();       
+	                    
 	                }
 	            });
 	            holder.parkna.setText((String)mData.get(position).get("parkna"));
@@ -183,6 +190,28 @@ public class DeleteBook extends ListActivity  implements OnClickListener{
 	        }
 	         
 	    }
+//	    public void showInfo(){
+//	    	LayoutInflater layoutInflater = LayoutInflater.from(this);
+//	    	View viewaffirm = layoutInflater.inflate(R.layout.affirmid, null);
+//	    	 
+//	    	new AlertDialog.Builder(this).setTitle("请输入密码").setView(
+//	    			viewaffirm ).setPositiveButton("确定",
+//	    	       new DialogInterface.OnClickListener() {
+//	    	           @Override
+//	    	           public void onClick(DialogInterface dialog, int which) {
+//	    	        	   Toast.makeText(getApplicationContext(), "您已取消该预定",
+//	    			   			     Toast.LENGTH_SHORT).show();
+//	    	        	   //回传
+//	    	           }
+//	    	       }).setNegativeButton("取消",
+//	    	       new DialogInterface.OnClickListener() {
+//	    	           @Override
+//	    	           public void onClick(DialogInterface dialog, int which) {
+//	    	                return;
+//	    	           }
+//	    	       }).show();
+//	         
+//	    }	
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
