@@ -1,6 +1,12 @@
 package com.smartlab.mobileapp.activity;
 
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -13,6 +19,8 @@ import com.smartlab.mobileapp.R;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 
 
@@ -29,6 +37,11 @@ import android.widget.Toast;
 
 public class Detail extends MapActivity implements OnClickListener{
 
+	//演示图片
+	String imageUrl = "http://www.2cto.com/uploadfile/2012/0317/20120317094731393.jpg"; 
+	Bitmap bmImg;   
+	ImageView	parkimage;
+	
 	
 	Button btnre;
 	TextView residue;
@@ -39,7 +52,7 @@ public class Detail extends MapActivity implements OnClickListener{
 	Button   download;
 	Button	 Book;
 	Button	Delete;
-	ImageView	parkimage;
+	
 	
 	String strname;
     String strcount;
@@ -70,11 +83,12 @@ public class Detail extends MapActivity implements OnClickListener{
 		ParkDetail = (TextView)findViewById(R.id.ParkDetail);//停车场详细信息
 		booktext= (TextView)findViewById(R.id.booktext);//预定信息
 		parkimage	=(ImageView)findViewById(R.id.imagepark);//park图片
+		//parkimage.setImageBitmap(returnBitMap(imageUrl)); 
 		download=(Button)findViewById(R.id.parkimage);//加载图片
 		download.setOnClickListener(this);
 		Book=(Button)findViewById(R.id.btnbook);//预定
 		Book.setOnClickListener(this);
-		Delete=(Button)findViewById(R.id.btndelete);//预定
+		Delete=(Button)findViewById(R.id.btndelete);//取消预定
 		Delete.setOnClickListener(this);
 		
 
@@ -86,6 +100,30 @@ public class Detail extends MapActivity implements OnClickListener{
 	
 		jjson();	
 		
+	}
+	
+	//转换图片
+	private Bitmap returnBitMap(String url) {
+		// TODO Auto-generated method stub
+		URL myFileUrl = null;   
+		Bitmap bitmap = null;   
+		try {   
+		myFileUrl = new URL(url);   
+		} catch (MalformedURLException e) {   
+		e.printStackTrace();   
+		}   
+		try {   
+		HttpURLConnection conn = (HttpURLConnection) 
+		myFileUrl.openConnection();   
+		conn.setDoInput(true);   
+		conn.connect();   
+		InputStream is = conn.getInputStream();   
+		bitmap = BitmapFactory.decodeStream(is);   
+		is.close();   
+		} catch (IOException e) {   
+		e.printStackTrace();   
+		}   
+		return bitmap;   
 	}
 	//JSON解析
 	private void  jjson(){
@@ -129,7 +167,8 @@ public class Detail extends MapActivity implements OnClickListener{
 		
 		switch(v.getId()){
 		case R.id.parkimage://图片加载
-			downimage();
+			parkimage.setImageBitmap(returnBitMap(imageUrl)); //加载网络图片
+			
 			
 			break;  
 		case R.id.btnbook://车位预定
@@ -166,12 +205,7 @@ public class Detail extends MapActivity implements OnClickListener{
 		}
 	}
 	
-	
-	//加载图片
-	private void downimage(){
-		
-		parkimage.setImageDrawable(null);
-	}
+
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch (resultCode) { //resultCode为回传的标记，我在B中回传的是RESULT_OK

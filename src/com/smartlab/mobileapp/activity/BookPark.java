@@ -1,9 +1,12 @@
 package com.smartlab.mobileapp.activity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +17,7 @@ import android.widget.Toast;
 import com.baidu.mapapi.MapActivity;
 import com.smartlab.mobileapp.R;
 
-public class BookPark extends MapActivity implements OnClickListener{
+public class BookPark extends MapActivity implements OnClickListener,Runnable{
 	
 	Button BookPark;
 	Button back;
@@ -22,6 +25,9 @@ public class BookPark extends MapActivity implements OnClickListener{
 	Intent intent;
 	Bundle bundl;
 	Boolean flagbook;
+	
+	
+	private ProgressDialog d;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -69,12 +75,21 @@ private void Bookpark(){
 	       new DialogInterface.OnClickListener() {
 	           @Override
 	           public void onClick(DialogInterface dialog, int which) {
-	        	   Toast.makeText(getApplicationContext(), "您已成功预定"+parkname,
-			   			     Toast.LENGTH_SHORT).show();
-	        	   //回传
-	          		flagbook=false;
-	            	BookPark.this.setResult(RESULT_OK, intent);
-	            	BookPark.this.finish();
+	        	   
+	        	   //显示预定中
+	        	   d=new ProgressDialog(BookPark.this);
+	        	   d.setMessage("预定中......");
+	        	   d.closeOptionsMenu();
+	        	   d.setCancelable(false);//显示时禁止触摸屏幕
+	        	   d.show();
+	        	   
+	        	   
+	        	   Thread thread=new Thread(BookPark.this);
+	        	   thread.start();
+	        	   
+
+	        	   
+	            	
 	           }
 	       }).setNegativeButton("取消",
 	       new DialogInterface.OnClickListener() {
@@ -84,6 +99,34 @@ private void Bookpark(){
 	           }
 	       }).show();
 	}
+	private Handler handler=new Handler() {
+		@Override
+		public void handleMessage(Message msg)
+		{
+			d.dismiss();
+			Toast.makeText(getApplicationContext(), "您已成功预定"+parkname,
+	   			     Toast.LENGTH_SHORT).show();
+			//回传
+      		flagbook=false;
+        	BookPark.this.setResult(RESULT_OK, intent);
+        	BookPark.this.finish();
+		}
+	};
+	//进程
+	@Override
+	public void run(){
+		// TODO Auto-generated method stub
+		try {
+			for(int i=0;i<10;i++){
+				Thread.sleep(1000);
+			}
+			handler.sendEmptyMessage(0);
+		} catch (InterruptedException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if(event.getKeyCode() == KeyEvent.KEYCODE_BACK){
