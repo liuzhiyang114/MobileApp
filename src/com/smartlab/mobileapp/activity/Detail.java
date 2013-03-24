@@ -1,6 +1,8 @@
 package com.smartlab.mobileapp.activity;
 
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -21,6 +23,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 
 
 
@@ -41,7 +44,6 @@ public class Detail extends MapActivity implements OnClickListener{
 	String imageUrl = "http://www.2cto.com/uploadfile/2012/0317/20120317094731393.jpg"; 
 	Bitmap bmImg;   
 	ImageView	parkimage;
-	
 	
 	Button btnre;
 	TextView residue;
@@ -167,8 +169,9 @@ public class Detail extends MapActivity implements OnClickListener{
 		
 		switch(v.getId()){
 		case R.id.parkimage://图片加载
-			parkimage.setImageBitmap(returnBitMap(imageUrl)); //加载网络图片
+			//parkimage.setImageBitmap(returnBitMap(imageUrl)); //加载网络图片
 			
+			parkimage.setBackgroundResource(R.drawable.parkim);
 			
 			break;  
 		case R.id.btnbook://车位预定
@@ -220,6 +223,7 @@ public class Detail extends MapActivity implements OnClickListener{
 	           break;
 		}
 	}
+	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if(event.getKeyCode() == KeyEvent.KEYCODE_BACK){
