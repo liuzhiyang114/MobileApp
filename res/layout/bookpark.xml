@@ -38,55 +38,46 @@
             android:textColor="#000000"
             android:textSize="25sp" />
     </RelativeLayout>
-    <!-- 停车时长 -->
 
+     <TextView
+         	android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="点击设置预定开始/结束时间"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+<!-- 开始计时时间 -->
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:paddingLeft="20dip"
         android:orientation="horizontal" >
+        
 
        
 
         <Button
-            android:id="@+id/timelong"
+            android:id="@+id/beginlog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="起始时间"
+            android:layout_marginLeft="30dp"
             android:textColor="#000000"
-            android:textSize="20sp" />
-         <TextView
-            android:id="@+id/along"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text=""
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="#000000"
-            android:textSize="23sp" />
-    </LinearLayout>
-    <!-- 开始计时时间 -->
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
+            android:textSize="18sp" />
+        
+   
         <Button
-            android:id="@+id/residueLog"
+            android:id="@+id/endlog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:text="结束时间"
             android:textColor="#000000"
-            android:textSize="20sp" />
-        <TextView
-            android:id="@+id/residue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text=""
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="#000000"
-            android:textSize="23sp" />
+            android:textSize="18sp" />
+       
 
     </LinearLayout>
     
@@ -97,13 +88,33 @@
             android:paddingLeft="25dip"
             android:paddingRight="25dip"
             android:textSize="18sp"
+            android:layout_marginTop="15dp"
             android:text="预定"
             android:background="@drawable/btnlist"
             android:layout_gravity="center"
             />
             
-
+ <TextView
+            android:id="@+id/begin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text=""
+            android:layout_marginTop="15dp"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="#000000"
+            android:textSize="18sp" />
         
+  <TextView
+            android:id="@+id/end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text=""
+            android:layout_marginTop="15dp"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="#000000"
+            android:textSize="18sp" />
        
 
 </LinearLayout>
