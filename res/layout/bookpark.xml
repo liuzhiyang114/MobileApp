@@ -45,22 +45,22 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
-        <TextView
+       
+
+        <Button
+            android:id="@+id/timelong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="起始时间"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+         <TextView
             android:id="@+id/along"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="停车时长选择："
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="#000000"
-            android:textSize="23sp" />
-
-        <TextView
-            android:id="@+id/timelong"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:enabled="false"
             android:text=""
+            android:textAppearance="?android:textAppearanceMedium"
             android:textColor="#000000"
             android:textSize="23sp" />
     </LinearLayout>
@@ -71,24 +71,23 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
-        <TextView
+        <Button
             android:id="@+id/residueLog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="停车开始计时时间选择："
-            android:textAppearance="?android:textAppearanceMedium"
+            android:text="结束时间"
             android:textColor="#000000"
-            android:textSize="23sp" />
-
+            android:textSize="20sp" />
         <TextView
             android:id="@+id/residue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:text=""
-            android:textStyle="bold" 
-            android:textColor="#CC0000"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="#000000"
             android:textSize="23sp" />
+
     </LinearLayout>
     
             

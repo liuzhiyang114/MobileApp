@@ -81,10 +81,10 @@ public class MainActivity extends MapActivity {
 		// spinner选择
 		ArrayAdapter aa = ArrayAdapter.createFromResource(this,
 				R.array.planets, android.R.layout.simple_spinner_item);
-		aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		aa.setDropDownViewResource(R.layout.spinnerdropdown);
 		spinner = (Spinner) findViewById(R.id.mySpinner);
 		spinner.setAdapter(aa);
-		spinner.setPrompt("搜索");
+		//spinner.setPrompt("搜索");
 
 		Toast.makeText(getApplicationContext(), "您的卡号为"+InputCard.cardNO,
   			     Toast.LENGTH_SHORT).show();

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 
 import com.baidu.mapapi.MapActivity;
 import com.smartlab.mobileapp.R;
+import com.smartlab.mobileapp.connection.MobileClientApp;
+
 
 public class BookPark extends MapActivity implements OnClickListener,Runnable{
 	
@@ -25,6 +28,8 @@ public class BookPark extends MapActivity implements OnClickListener,Runnable{
 	Intent intent;
 	Bundle bundl;
 	Boolean flagbook;
+	String rev;
+	String revretu;
 	
 	
 	private ProgressDialog d;
@@ -42,6 +47,7 @@ public class BookPark extends MapActivity implements OnClickListener,Runnable{
 		bundl=intent.getExtras();
 		flagbook=bundl.getBoolean("flag");
 		parkname=bundl.getString("parkname");
+		revretu=bundl.getString("revreturn");
 	}
 	
 	
@@ -104,10 +110,17 @@ private void Bookpark(){
 		public void handleMessage(Message msg)
 		{
 			d.dismiss();
-			Toast.makeText(getApplicationContext(), "您已成功预定"+parkname,
+			Toast.makeText(getApplicationContext(), revretu,
 	   			     Toast.LENGTH_SHORT).show();
 			//回传
       		flagbook=false;
+      		Bundle bundle=new Bundle();
+			bundle.putBoolean("flag", flagbook);
+			bundle.putString("revreturn", revretu);
+			intent.putExtras(bundle);
+			
+			
+      		System.out.println(revretu);
         	BookPark.this.setResult(RESULT_OK, intent);
         	BookPark.this.finish();
 		}
@@ -117,9 +130,17 @@ private void Bookpark(){
 	public void run(){
 		// TODO Auto-generated method stub
 		try {
+			MobileClientApp mc = new MobileClientApp();
+			revretu=mc.write("邓杰HELLO");
 			for(int i=0;i<10;i++){
 				Thread.sleep(1000);
+				if(TextUtils.isEmpty(revretu)){
+				}
+				else{
+					i=9;
+				}
 			}
+			System.out.println(revretu);
 			handler.sendEmptyMessage(0);
 		} catch (InterruptedException e) {
 			// TODO: handle exception

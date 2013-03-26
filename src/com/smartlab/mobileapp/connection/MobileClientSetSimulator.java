@@ -13,19 +13,6 @@ public class MobileClientSetSimulator {
 					String rev=mc.write(ii+"hello");
 //					mc.write("2hello12345678901234567890123456789012345678901234567890");
 					System.out.println(rev);
-//					while(true){
-//						try {
-//							sleep(2000);
-//							String ss=mc.write(j+"hello");
-//							System.out.println(ss);
-//							j++;
-//						} catch (InterruptedException e) {
-//							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						}
-//					}
-					
-					
 				}
 			}.start();
 
@@ -34,7 +21,6 @@ public class MobileClientSetSimulator {
 	}
 
 }
-
 class MobileClient {
 	int _i;
 

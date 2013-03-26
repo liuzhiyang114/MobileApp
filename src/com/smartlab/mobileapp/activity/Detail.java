@@ -61,6 +61,8 @@ public class Detail extends MapActivity implements OnClickListener{
     String strresidue;
     String strParkDetail;
     Boolean flagbook=true;
+    
+    String revreturn;
 	String sendmsg ="{" +   
 		    "   \"action\" : \"getGPS\"," +  
 		    "   \"success\" : \"true\"," + 
@@ -180,7 +182,7 @@ public class Detail extends MapActivity implements OnClickListener{
 				Bundle bundle=new Bundle();
 				bundle.putString("parkname", strname);
 				bundle.putBoolean("flag", flagbook);
-				
+				bundle.putString("revreturn", revreturn);
 				intent.putExtras(bundle);
 				
 				startActivityForResult(intent, 0);
@@ -216,7 +218,9 @@ public class Detail extends MapActivity implements OnClickListener{
 			Bundle bund=data.getExtras();  //data为B中回传的Intent
 			String str=bund.getString("str1");//str即为回传的值
 			flagbook=bund.getBoolean("flagbook");
-			booktext.setText("您已预定停车位，信息如下：\n"+strname+"	A区43号");
+			revreturn=bund.getString("revreturn");
+			System.out.println("Detail"+revreturn);
+			booktext.setText("您已预定停车位，信息如下：\n"+strname+"	A区43号"+revreturn);
                       break;
  
 		default:
