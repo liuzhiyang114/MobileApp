@@ -132,8 +132,10 @@ public class InputCard extends Activity implements OnClickListener, Callback{
 		if (resultCode == RESULT_OK) {
 			Bundle bundle = data.getExtras();
 			String scanResult = bundle.getString("result");
-			myresult.setText(scanResult);
 			cardNO=scanResult;
+			myresult.setText(scanResult);
+			
+			//System.out.println(scanResult);
 		}
 	}
 }

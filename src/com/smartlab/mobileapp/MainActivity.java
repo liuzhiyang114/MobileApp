@@ -86,8 +86,9 @@ public class MainActivity extends MapActivity {
 		spinner.setAdapter(aa);
 		//spinner.setPrompt("搜索");
 
-		Toast.makeText(getApplicationContext(), "您的卡号为"+InputCard.cardNO,
+		Toast.makeText(getApplicationContext(), InputCard.cardNO,
   			     Toast.LENGTH_SHORT).show();
+		System.out.println(InputCard.cardNO);
 		btn1 = (Button) findViewById(R.id.button1);
 		btn2 = (Button) findViewById(R.id.button2);
 		btn3 = (Button) findViewById(R.id.button3);
@@ -226,8 +227,6 @@ public class MainActivity extends MapActivity {
 		boolean result = true;
 		LocationManager lmanager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		if (!lmanager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-			// Toast.makeText(getApplicationContext(), "GPS未开启",
-			// Toast.LENGTH_SHORT).show();
 			AlertDialog alertDialogGPS = new AlertDialog.Builder(this)
 					.setIcon(android.R.drawable.ic_dialog_alert)
 					.setTitle("GPS定位")
@@ -304,19 +303,6 @@ public class MainActivity extends MapActivity {
 		alertDialog.show(); // 显示对话框
 	}
 
-//	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//		switch (resultCode) { //resultCode为回传的标记，我在B中回传的是RESULT_OK
-//		case RESULT_OK:
-//			Bundle bund=data.getExtras();  //data为B中回传的Intent
-//			String str=bund.getString("str1");//str即为回传的值
-//			flagmain=bund.getBoolean("flagbook");
-//			//booktext.setText("您已预定停车位，信息如下：\n"+strname+"	A区43号");
-//                      break;
-// 
-//		default:
-//	           break;
-//		}
-//	}
 	// 退出
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {

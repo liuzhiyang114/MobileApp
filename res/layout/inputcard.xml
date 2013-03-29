@@ -25,14 +25,10 @@
              android:text="开始扫描" />
 
          
+         
        
          </LinearLayout>
-         <TextView 
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_gravity="center"
-             android:textSize="18sp"
-             android:text="您的卡号为："/>
+
          
          <TextView android:id="@+id/myresult"
              android:layout_width="wrap_content"

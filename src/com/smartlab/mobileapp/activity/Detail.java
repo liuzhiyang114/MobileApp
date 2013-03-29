@@ -15,6 +15,7 @@ import org.json.JSONTokener;
 
 import com.baidu.mapapi.MapActivity;
 import com.smartlab.mobileapp.R;
+import com.smartlab.mobileapp.connection.MobileClientApp;
 
 
 
@@ -28,7 +29,10 @@ import android.graphics.Matrix;
 
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -44,7 +48,7 @@ public class Detail extends MapActivity implements OnClickListener{
 	String imageUrl = "http://www.2cto.com/uploadfile/2012/0317/20120317094731393.jpg"; 
 	Bitmap bmImg;   
 	ImageView	parkimage;
-	
+	  
 	Button btnre;
 	TextView residue;
 	TextView name;
@@ -75,10 +79,24 @@ public class Detail extends MapActivity implements OnClickListener{
 		    "   \"parkinfo\" : \"每小时收费情况说明\"" +  
 		"}";
 
+	private static final int COMPLETED = 0; 
+	Bitmap bitm;
+	Handler handler = new Handler() {  
+        @Override  
+        public void handleMessage(Message msg) {  
+            if (msg.what == COMPLETED) {  
+            	parkimage.setBackgroundResource(R.drawable.parkim);
+            	//parkimage.setImageBitmap(bitm); //加载网络图片
+            }  
+        }  
+    };
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.detail);
+		
+		 
+		    
 		btnre = (Button)findViewById(R.id.btnre);
 		btnre.setOnClickListener(this);
 		residue =(TextView)findViewById(R.id.residue);//剩余停车场位
@@ -95,7 +113,7 @@ public class Detail extends MapActivity implements OnClickListener{
 		Delete=(Button)findViewById(R.id.btndelete);//取消预定
 		Delete.setOnClickListener(this);
 		
-
+		 
 
 		//设置剩余车位数字粗体
 //		residue = (EditText)findViewById(R.id.residue) ;
@@ -103,6 +121,7 @@ public class Detail extends MapActivity implements OnClickListener{
 //		paint.setFakeBoldText(true); 
 	
 		jjson();	
+		
 		
 	}
 	
@@ -172,9 +191,28 @@ public class Detail extends MapActivity implements OnClickListener{
 		switch(v.getId()){
 		case R.id.parkimage://图片加载
 			//parkimage.setImageBitmap(returnBitMap(imageUrl)); //加载网络图片
-			
-			parkimage.setBackgroundResource(R.drawable.parkim);
-			
+
+			    
+			new Thread(){  
+                public void run(){    
+                	//parkimage.setBackgroundResource(R.drawable.parkim);
+                	//bitm=returnBitMap(imageUrl);
+                	for(int i=0;i<2;i++){
+        				try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+        				
+        				
+        			}
+                	
+                	Message msg = new Message();  
+                    msg.what = COMPLETED;  
+                    handler.sendMessage(msg); 
+                    }                     
+            }.start();  
 			break;  
 		case R.id.btnbook://车位预定
 				Intent intent=new Intent(Detail.this,BookPark.class);
@@ -236,4 +274,8 @@ public class Detail extends MapActivity implements OnClickListener{
 		}
 		return super.onKeyDown(keyCode, event);
 	}
+
+
+
+
 }
