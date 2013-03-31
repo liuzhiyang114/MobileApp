@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.baidu.mapapi.MapActivity;
 import com.smartlab.mobileapp.R;
+import com.smartlab.mobileapp.JSONtool.JSONObject;
 import com.smartlab.mobileapp.connection.MobileClientApp;
 
 
@@ -204,7 +205,9 @@ private void Bookpark(){
 		// TODO Auto-generated method stub
 		try {
 			MobileClientApp mc = new MobileClientApp();
+ 
 			revretu=mc.write("邓杰HELLO");
+//			type=phone&action=reqOrder&params={"action":"reqOrder","ParkID":"123",'"BeginTime":"423","EndTime":"1","CardNo":"5"}
 			for(int i=0;i<10;i++){
 				Thread.sleep(1000);
 				if(TextUtils.isEmpty(revretu)){
@@ -221,6 +224,73 @@ private void Bookpark(){
 		}
 	}
 
+	//封装预定JSON
+	public static String setBook(String key,String value,String fullMsg){
+		String res="";
+		JSONObject jsonObj=new JSONObject(fullMsg);
+		if(jsonObj.optString("action")!=""){
+			jsonObj.remove("action");
+			jsonObj.put("action", "reqOrder");
+			res=jsonObj.toString();
+		}else{
+			jsonObj.put("action", "reqOrder");
+			res=jsonObj.toString();
+		}
+		//卡号
+		if(jsonObj.optString("CardNo")!=""){
+			jsonObj.remove("CardNo");
+			jsonObj.put("CardNo", "cardNO");
+			res=jsonObj.toString();
+		}else{
+			jsonObj.put("CardNo", "cardNO");
+			res=jsonObj.toString();
+		}
+		//停车场ID
+		if(jsonObj.optString("ParkID")!=""){
+			jsonObj.remove("ParkID");
+			jsonObj.put("ParkID", "ParkID");
+			res=jsonObj.toString();
+		}else{
+			jsonObj.put("ParkID", "ParkID");
+			res=jsonObj.toString();
+		}
+		//开始时间
+		if(jsonObj.optString("BeginTime")!=""){
+			jsonObj.remove("BeginTime");
+			jsonObj.put("BeginTime", "BeginTime");
+			res=jsonObj.toString();
+		}else{
+			jsonObj.put("BeginTime", "BeginTime");
+			res=jsonObj.toString();
+		}
+		//结束时间
+		if(jsonObj.optString("EndTime")!=""){
+			jsonObj.remove("EndTime");
+			jsonObj.put("EndTime", "EndTime");
+			res=jsonObj.toString();
+		}else{
+			jsonObj.put("EndTime", "EndTime");
+			res=jsonObj.toString();
+		}
+		return res;
+	}
+//	type=phone&action=reqOrder&params={"action":"reqOrder","CardNo":"5","ParkID":"123",'"BeginTime":"423","EndTime":"1"}
+	
+	//解析json
+	public static JSONObject getFirstVa(String fullMsg){
+		JSONObject jsonObj=new JSONObject(fullMsg);
+		//String value=jsonObj.optString(key);
+		return jsonObj;
+	}
+	public static String getSecondVa(String key,String fullMsg){
+		JSONObject jsontr=new JSONObject(getFirstVa(fullMsg));
+		String value=jsontr.optString("action");
+		String value1=jsontr.optString("action");
+		String value2=jsontr.optString("action");
+		return value;	
+	}
+	
+	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if(event.getKeyCode() == KeyEvent.KEYCODE_BACK){

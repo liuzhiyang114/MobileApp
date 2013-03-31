@@ -66,6 +66,7 @@ public class Detail extends MapActivity implements OnClickListener{
     String strParkDetail;
     Boolean flagbook=true;
     
+    
     String revreturn;
 	String sendmsg ="{" +   
 		    "   \"action\" : \"getGPS\"," +  
@@ -78,7 +79,7 @@ public class Detail extends MapActivity implements OnClickListener{
 		    "   \"restamount\" : \"25\"," +  
 		    "   \"parkinfo\" : \"每小时收费情况说明\"" +  
 		"}";
-
+	Thread loadimage;
 	private static final int COMPLETED = 0; 
 	Bitmap bitm;
 	Handler handler = new Handler() {  
@@ -191,28 +192,47 @@ public class Detail extends MapActivity implements OnClickListener{
 		switch(v.getId()){
 		case R.id.parkimage://图片加载
 			//parkimage.setImageBitmap(returnBitMap(imageUrl)); //加载网络图片
-
+			if(loadimage.isAlive()){
+				//loadimage.destroy(); 
+					new Thread(loadimage){  
+	                public void run(){    
+	                	//parkimage.setBackgroundResource(R.drawable.parkim);
+	                	//bitm=returnBitMap(imageUrl);
+	                	for(int i=0;i<2;i++){
+	        				try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+	        			}
+	                	Message msg = new Message();  
+	                    msg.what = COMPLETED;  
+	                    handler.sendMessage(msg); 
+	                    }                     
+	            }.start(); 
+            }
+			else{
+				new Thread(loadimage){  
+	                public void run(){    
+	                	//parkimage.setBackgroundResource(R.drawable.parkim);
+	                	//bitm=returnBitMap(imageUrl);
+	                	for(int i=0;i<2;i++){
+	        				try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+	        			}
+	                	Message msg = new Message();  
+	                    msg.what = COMPLETED;  
+	                    handler.sendMessage(msg); 
+	                    }                     
+	            }.start(); 
+			}
 			    
-			new Thread(){  
-                public void run(){    
-                	//parkimage.setBackgroundResource(R.drawable.parkim);
-                	//bitm=returnBitMap(imageUrl);
-                	for(int i=0;i<2;i++){
-        				try {
-							Thread.sleep(1000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-        				
-        				
-        			}
-                	
-                	Message msg = new Message();  
-                    msg.what = COMPLETED;  
-                    handler.sendMessage(msg); 
-                    }                     
-            }.start();  
+			
 			break;  
 		case R.id.btnbook://车位预定
 				Intent intent=new Intent(Detail.this,BookPark.class);
